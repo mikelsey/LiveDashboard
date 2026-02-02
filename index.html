@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertical Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f172a; /* dark slate */
+      --card: #020617;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+    }
+
+    body.light {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #0284c7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .dashboard {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    header h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    button {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      overflow-y: auto;
+    }
+
+    .module {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .module h2 {
+      font-size: 16px;
+      margin: 0 0 8px 0;
+      color: var(--accent);
+    }
+
+    .item {
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    .muted { color: var(--muted); }
+
+    /* optimized for vertical monitors */
+    @media (min-height: 1200px) {
+      main {
+        gap: 16px;
+      }
+      .module {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body class="dark">
+  <div class="dashboard">
+    <header>
+      <h1>📊 Daily Dashboard</h1>
+      <button id="toggle">Toggle Dark Mode</button>
+    </header>
+
+    <main>
+      <!-- Weather -->
+      <section class="module" id="weather">
+        <h2>🌤 Weather</h2>
+        <div class="item">Meridian, ID</div>
+        <div class="item">42°F · Clear</div>
+        <div class="item muted">High 48° / Low 29°</div>
+      </section>
+
+      <!-- Sports -->
+      <section class="module" id="sports">
+        <h2>🏈 Sports</h2>
+        <div class="item">Boise State Broncos — Next game Sat</div>
+        <div class="item">Detroit Lions — Offseason</div>
+        <div class="item muted">Live scores can rotate here</div>
+      </section>
+
+      <!-- News -->
+      <section class="module" id="news">
+        <h2>📰 News</h2>
+        <div class="item">• Market opens mixed amid rate uncertainty</div>
+        <div class="item">• Tech companies push deeper into AI tools</div>
+        <div class="item">• Regional growth continues in Treasure Valley</div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('toggle');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+    });
+
+    /*
+      NEXT STEPS (plug-in ready):
+      - Weather: OpenWeatherMap API
+      - Sports: ESPN, SportsData.io, or Sportradar APIs
+      - News: NewsAPI.org or NYT API
+      - Add auto-refresh intervals (e.g. every 10–30 min)
+      - Add vertical scrolling ticker or timed rotation per module
+    */
+  </script>
+</body>
+</html>
